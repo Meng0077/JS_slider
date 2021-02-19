@@ -1,38 +1,56 @@
-//自动播放
-function auto_play(){
-	clearInterval(timer);
-	timer = setInterval(function(){
-		next(index);
-	}, 1000)
-}
-function stop_play(){
-	clearInterval(timer);
-}
-//计算下一个
-function next(index){
-	slideTo(index);
-	index[0] = index[1];
-	index[1]++; 
-	if(index[1] >= num_item){
-		index[1] = 0;
-	}
+window.onload = function(){
+	//ele
+	var box = document.getElementById("box");
+	var items_img = document.getElementsByClassName("item_pic");
+	var btn = document.getElementsByClassName("button");
+	var dots = document.getElementsByClassName("item_dot");
 	
-}
-//上一个
-function previous(index){
-	slideTo(index);
-	index[0] = index[1];
-	index[1]--;
-	if(index[1] < 0){
-		index[1] = num_item - 1;
+	var index = [0,0];
+	
+	
+	//box
+	box.addEventListener("mouseout", function(){
+		auto_play(index);
+		btn[0].style.display = "none";
+		btn[1].style.display = "none";
+	}, false);
+	box.addEventListener("mouseover", function(){
+		stop_play();
+		btn[0].style.display = "block";
+		btn[1].style.display = "block";
+	}, false);
+	
+	//btn
+	for(let i = 0; i < btn.length; i++){
+		btn[i].addEventListener("mouseover", function(){
+			this.style.backgroundColor = "rgba(0, 0, 0, 0.8)"
+		}, false);
+		btn[i].addEventListener("mouseout", function(){
+			this.style.backgroundColor = "rgba(0, 0, 0, 0.4)"
+		}, false)
 	}
-}
-//切图
-function slideTo(index){
-	let item_now = items_img[index[0]];
-	let item_next = items_img[index[1]];
-	item_now.style.display = "none";
-	item_next.style.display = "block";
-	dots[index[1]].style.backgroundColor = "red";
-	dots[index[0]].style.backgroundColor = "gray";
+	btn[0].addEventListener("click", function(){
+		previous(index);
+	}, false);
+	btn[1].addEventListener("click", function(){
+		next(index);
+	}, false);
+	
+	//dot
+	for(let i = 0; i < dots.length; i++){
+		dots[i].addEventListener("mouseover", function(){
+			dots[i].style.backgroundColor = "red";
+
+		});
+		dots[i].addEventListener("mouseout", function(){
+			dots[i].style.backgroundColor = "gray";
+		});
+		dots[i].addEventListener("click", function(){
+			
+			index[0] = index[1];  
+			index[1] = i;
+			slideTo(index);
+			console.log(index);
+		});
+	}
 }
