@@ -3,80 +3,26 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-    <link href="./index.css" />
-    <script src="./index.js"></script>
-    <script type="text/javascript">
-        window.onload = function(){
-            //ele
-            var box = document.getElementById("box");
-            var items_img = document.getElementsByClassName("item_pic");
-            var btn = document.getElementsByClassName("button");
-            
-            var timer;
-            var index = [0,0];
-            var num_item = items_img.length;
-            
-            //box
-            box.addEventListener("mouseout", function(){
-                auto_play();
-                btn[0].style.display = "none";
-                btn[1].style.display = "none";
-            }, false);
-            box.addEventListener("mouseover", function(){
-                stop_play();
-                btn[0].style.display = "block";
-                btn[1].style.display = "block";
-            }, false);
-            
-            //btn
-            for(let i = 0; i < btn.length; i++){
-                btn[i].addEventListener("mouseover", function(){
-                    this.style.backgroundColor = "rgba(0, 0, 0, 0.8)"
-                }, false);
-                btn[i].addEventListener("mouseout", function(){
-                    this.style.backgroundColor = "rgba(0, 0, 0, 0.4)"
-                }, false)
-            }
-            btn[0].addEventListener("click", function(){
-                previous(index);
-            }, false);
-            btn[1].addEventListener("click", function(){
-                next(index);
-            }, false);
-            
-            //dot
-            var dots = document.getElementsByClassName("item_dot");
-            for(let i = 0; i < dots.length; i++){
-                dots[i].addEventListener("mouseover", function(){
-                    dots[i].style.backgroundColor = "red";
+    <link type="text/css" rel="styleSheet"  href="./index.css" />
+    <script src="./fn.js"></script>
+	<script src="./index.js"></script>
 
-                });
-                dots[i].addEventListener("mouseout", function(){
-                    dots[i].style.backgroundColor = "gray";
-                });
-                dots[i].addEventListener("click", function(){
-                    index[1] = i;
-                    next(index);
-                });
-            }
-        }
-    </script>
         
   </head>
 	<body>
 		<div id="box">
 			<ul class="pic">
 				<li id="pic1" class="item_pic">
-					<img src="../018%20animation/A1.jpg" />
+					<img src="./img/A1.jpg" />
 				</li>
 				<li id="pic2" class="item_pic">
-					<img src="../018%20animation/A2.jpg" />
+					<img src="./img/A2.jpg" />
 				</li>
 				<li id="pic3" class="item_pic">
-					<img src="../018%20animation/A3.jpg" />
+					<img src="./img/A3.jpg" />
 				</li>
 				<li id="pic4" class="item_pic">
-					<img src="../018%20animation/A4.jpg" />
+					<img src="./img/A4.jpg" />
 				</li>
 			</ul>
 			<div class="button" id="left">left</div>
